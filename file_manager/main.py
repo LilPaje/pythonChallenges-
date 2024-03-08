@@ -14,6 +14,7 @@ import sys
 def windows_remove_files():
     filepath = 'C:/Users/bruno/Downloads'
     print(filepath)
+    print(os.listdir(filepath))
 
 
 
