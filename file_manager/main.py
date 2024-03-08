@@ -1,33 +1,70 @@
-#QR code (Quick Response code)  is a type of the matrix barcode invented in 1994 by the Japanese automotive company
-# Denso Wave. A barcode is a machine-readable optical label that can contain information about the item to which
-# it is attached.
-#Using Python packages like qrcode, pyqrcode modules we can generate and read the QR codes. In this project, we
-# will see how we can generate the QR Codes using python.
-#In this project, we will take the link from the user and the basic requirements like name, box size, etc, and
-# generate a QRcode with the given information.
-#You can generate the QR code and save it in png format.
 import os
 import platform
 import sys
+from pathlib import Path
+import time
 
+def welcome():
+    
+    print("""
+╭━━━╮╭╮╱╱╱╱╭━╮╭━╮
+┃╭━━╯┃┃╱╱╱╱┃┃╰╯┃┃
+┃╰━━┳┫┃╭━━╮┃╭╮╭╮┣━━┳━╮╭━━┳━━┳━━┳━╮
+┃╭━━╋┫┃┃┃━┫┃┃┃┃┃┃╭╮┃╭╮┫╭╮┃╭╮┃┃━┫╭╯
+┃┃╱╱┃┃╰┫┃━┫┃┃┃┃┃┃╭╮┃┃┃┃╭╮┃╰╯┃┃━┫┃
+╰╯╱╱╰┻━┻━━╯╰╯╰╯╰┻╯╰┻╯╰┻╯╰┻━╮┣━━┻╯
+╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭━╯┃
+╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰━━╯
+          """)
 
-def windows_remove_files():
-    filepath = 'C:/Users/bruno/Downloads'
-    print(filepath)
-    print(os.listdir(filepath))
+#def get_number_of_users_windows():
+#    os.system('net user > users.txt')
+#    users = Path('./users.txt').read_text()
+#    print(users)
 
+def remove_files(user, folder):
+    filepath = f'C:/Users/{user}/{folder}/teste'
+    dir_file_list = os.listdir(filepath)
+    print(dir_file_list)
+    for i in dir_file_list:
+        print(i)
+        os.remove(filepath+f"/{i}")
 
+def windows_remove_files_from_folder(user):
+    list_folders = ["Documents", "Images", "Downloads"]
+    print("Which folder do you want to exclude the files?")
+    print("[1] Documents")
+    print("[2] Images")
+    print("[3] Downloads")
+    print("[0] Cancel")
 
-print("""Python version: %s
+    input_user = str(input("-> "))
+    if input_user == "0":
+        time.sleep(2.5)
+        print("Canceling...")
+        main()
 
-system: %s
+    elif input_user == "1" or input_user == "2" or input_user == "3":
+        print("Removing...")
+        remove_files(user,list_folders[int(input_user)-1])
+        time.sleep(2.5)
+        main()
 
-""" % (
-sys.version.split('\n'),
-platform.system(),
-
-))
+    else:
+        print("Invalid value, please try again")
+        time.sleep(2.5)
+        main()
+    
 
 def main():
+    welcome() 
+    print("Select the option: ")
+    print("[1] Clear folder")
+    print("[2] Change Files Location")
+    print("[0] Exit")
     if platform.system() == 'Windows':
-        windows_remove_files()
+        windows_remove_files_from_folder(os.getlogin())
+
+main()
+
+#get_number_of_users_windows()
