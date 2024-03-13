@@ -3,6 +3,7 @@ import platform
 #import sys
 from pathlib import Path
 import time
+import shutil
 
 def welcome():
     
@@ -36,10 +37,8 @@ def remove_files(user, folder):
             if os.path.isfile(filepath+f"/{i}"):
                 os.remove(filepath+f"/{i}")
                 #print(os.path.isdir(filepath+f"/{i}"))
-            else:
-                while(file_inside_file):
-                    os.listdir(filepath+f"/{i}")
-                    
+            else: 
+                shutil.rmtree(filepath+f"/{i}")
 
     elif input_user == 'N' or 'n':
         print("Canceling...")
@@ -66,12 +65,16 @@ def windows_remove_files_from_folder(user):
     else:
         print("Invalid value, please try again")
 
-    
+
+def organize_files(path):
+    list_extensions = [".pdf",".exe",".msi",".jpg",".png",".jif"]
+    list_itens_on_folder
+
 def main():
     welcome() 
     print("Select the option: ")
     print("[1] Clear folder")
-    print("[2] Change Files Location")
+    print("[2] Organize Files")
     print("[0] Exit")
 
     input_user = str(input("-> "))
