@@ -53,7 +53,7 @@ def remove_files(user):
 
 
 def choose_folder():
-    list_folders = ["Documents", "Images", "Downloads/teste"]
+    list_folders = ["Documents", "Images", "Downloads"]
     print("Which folder do you want to exclude the files?")
     print("[1] Documents")
     print("[2] Images")
@@ -70,7 +70,9 @@ def choose_folder():
     else:
         print("Invalid value, please try again")
         choose_folder()
-    
+
+def create_folder():
+        
 
 def organize_files(user):
     #list_extensions = [".pdf",".exe",".msi",".jpg",".png",".jif",".txt"]
@@ -79,17 +81,18 @@ def organize_files(user):
     input_user = choose_folder()
     path = f'C:/Users/{user}/{input_user}'
     list_itens_on_folder = os.listdir(path)
-    list_itens_destiny_folder = os.listdir(f'C:/Users/{user}/Documents/Izzy/teste')
+    list_itens_destiny_folder = os.listdir(f'C:/Users/{user}/Documents/Organizing Files/teste')
     if input_user == "-1":
         pass
     else: 
         print("Organizing")
         for j in list_itens_on_folder:
             if j[-3:] in list_itens_destiny_folder:
-                shutil.move(path+'/'+j,f'C:/Users/{user}/Documents/Izzy/teste/'+j[-3:])
+                shutil.move(path+'/'+j,f'C:/Users/{user}/Documents/Organizing Files/'+j[-3:])
                 #print(j[-4:])
             else:
-                shutil.move(path+'/'+j,f'C:/Users/{user}/Documents/Izzy/teste/other')
+                print("This type of file do")
+                shutil.move(path+'/'+j,f'C:/Users/{user}/Documents/Organizing Files/other')
             
     
 
